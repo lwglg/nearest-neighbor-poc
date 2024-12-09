@@ -6,7 +6,7 @@
 void exportaVizinhosMaisProximos(char *linha, int tamanho, int *vetorIndicesDistancia, float *vetorVizinhoMaisProximo) {
 	// Exportação dos NN em um arquivo CSV
 	FILE * arquivo;
-	arquivo = fopen("vizinho-mais-proximo.csv", "wb");
+	arquivo = fopen("resources/vizinho-mais-proximo.csv", "wb");
 	char cabecalho[] = "LINHA,TAMANHO\n"; 
 
 	if (arquivo == NULL) {
@@ -37,7 +37,7 @@ void main(int argc, char *argv[]) {
 	printf("----------------------------------------------------------\n ");
 
 	numbers = (double*)malloc(100 * sizeof(double));
-	arqin =fopen("dados-entrada.txt", "rt");
+	arqin =fopen("resources/dados-entrada.txt", "rt");
 
 	if (arqin == NULL)    {
 		printf("Erro na abertura do arquivo\n");
