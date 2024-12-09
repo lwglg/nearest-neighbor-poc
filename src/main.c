@@ -4,40 +4,27 @@
 #include "nearest-neighbor.h"
 
 void exportaVizinhosMaisProximos(char *linha, int tamanho, int *vetorIndicesDistancia, float *vetorVizinhoMaisProximo) {
-	// Exportação dos NN em um arquivo CSV
-	FILE * arquivo;
-	arquivo = fopen("resources/vizinho-mais-proximo.csv", "wb");
+	FILE * arqout = fopen("resources/vizinho-mais-proximo.csv", "wb");
 	char cabecalho[] = "LINHA,TAMANHO\n"; 
 
-	if (arquivo == NULL) {
+	if (arqout == NULL) {
 		printf("\nErro ao abrir o arquivo para escrita!\n");
     	exit(1);
 	}
 
-	fwrite(cabecalho, strlen(cabecalho), 1, arquivo);
+	fwrite(cabecalho, strlen(cabecalho), 1, arqout);
 	
 	for (int p = 0; p < tamanho; p++) {
   		sprintf(linha,"%d,%.15f\n", vetorIndicesDistancia[p], vetorVizinhoMaisProximo[p]);
-  		fwrite(linha, strlen(linha), 1, arquivo);
+  		fwrite(linha, strlen(linha), 1, arqout);
 	}
 
- 	fclose(arquivo);
+ 	fclose(arqout);
 }
 
-void main(int argc, char *argv[]) {
-	FILE *arqin, *arqout;
+void realizaLeituraSequencias(char *linha, double *numbers, int tamanhoVetor, int debug) {
 	char *result;
-	char linha[100];
-	double *numbers;
-	int i, tamanhoVetor, sequencia;
-	int debug = 1;
-
-	printf("Informe a sequencia: "); 
-	scanf("%d", &sequencia);
-	printf("----------------------------------------------------------\n ");
-
-	numbers = (double*)malloc(100 * sizeof(double));
-	arqin =fopen("resources/dados-entrada.txt", "rt");
+	FILE * arqin = fopen("resources/dados-entrada.txt", "rt");
 
 	if (arqin == NULL)    {
 		printf("Erro na abertura do arquivo\n");
@@ -64,8 +51,24 @@ void main(int argc, char *argv[]) {
 
 		numbers[tamanhoVetor] = atof(linha);
 	}
+}
 
-	fclose(arqin);
+void main(int argc, char *argv[]) {
+	FILE * arqout;
+	char *result;
+	char linha[100];
+	double *numbers;
+	int i, tamanhoVetor, sequencia;
+	int debug = 1;
+
+	printf("Informe a sequencia: "); 
+	scanf("%d", &sequencia);
+	printf("----------------------------------------------------------\n ");
+
+	numbers = (double*)malloc(100 * sizeof(double));  
+	tamanhoVetor = 0;
+
+	realizaLeituraSequencias(linha, numbers, tamanhoVetor, debug);
 
 	int tamanho = calculaTamanhoVetor(sequencia, tamanhoVetor);						// Calcula o tamanho do vetor com base na sequência informada
 	int vetorResultadosParaSoma[sequencia];											// Vetor que receberá as somas das raízes
