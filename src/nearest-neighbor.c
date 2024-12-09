@@ -32,7 +32,6 @@ double calculaRaiz(double *vetor, int i, int j, int sequencia, int debug){
   	return raiz;
 }
 
-//FUNÇÃO RESPONSAVEL POR ENCONTRAR O VIZINHO MAIS PROXIMO NA MATRIZ E ARMAZENAR A SUA RAIZ E RESPECTVO INDICE
 void extraiVizinhoMaisProximo(
 	int tamanho,
 	double **vetorResultadoValoresDistancia,
