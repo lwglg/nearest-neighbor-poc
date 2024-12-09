@@ -1,0 +1,15 @@
+version: '3.8'
+
+services:
+  nn:
+    container_name: nearest-neighbor-build-ctnr
+    image: lwglg/nearest-neighbor-build:latest
+    build:
+      context: .
+      dockerfile: ./infra/Dockerfile
+    env_file:
+      - ./infra/.build.env
+    volumes:
+      - './resources/dados-entrada.txt:/nn/dados-entrada.txt'
+      - './resources/vizinho-mais-proximo.csv:/nn/vizinho-mais-proximo.csv'
+      - './build/nearest_neighbor:/nn/nearest_neighbor'
