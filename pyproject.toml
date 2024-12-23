@@ -1,0 +1,17 @@
+[tool.poetry]
+name = "nearest-neighbor"
+version = "0.1.0"
+description = "Simple implementation of the nearest neighbor algorithm, in C."
+authors = ["Guilherme Lima Gonçalves <lwglguilherme@gmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+pre-commit = "^4.0.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
